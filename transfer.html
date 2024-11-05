@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Money - LAL Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .transfer-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 450px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .transfer-container:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .input-group select {
+            background-color: #fff;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 1em;
+            color: green;
+        }
+
+        .otp-section {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="transfer-container">
+        <h2>Transfer Money - LAL Bank</h2>
+
+        <div class="input-group">
+            <label for="accountName">Recipient's Account Name:</label>
+            <input type="text" id="accountName" required placeholder="e.g., John Doe">
+        </div>
+
+        <div class="input-group">
+            <label for="accountNumber">Recipient's Account Number:</label>
+            <input type="number" id="accountNumber" required placeholder="Enter account number">
+        </div>
+
+        <div class="input-group">
+            <label for="currency">Currency:</label>
+            <select id="currency" required>
+                <option value="USD">USD - US Dollar</option>
+                <option value="EUR">EUR - Euro</option>
+                <option value="INR">INR - Indian Rupee</option>
+                <option value="AED">AED - UAE Dirham</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="amount">Amount to Transfer:</label>
+            <input type="number" id="amount" required placeholder="Enter amount">
+        </div>
+
+        <div class="input-group">
+            <label for="notes">Transaction Note:</label>
+            <input type="text" id="notes" placeholder="e.g., Rent payment, Gift">
+        </div>
+
+        <button class="btn" onclick="initiateTransfer()">Proceed to Transfer</button>
+
+        <div class="otp-section" id="otpSection">
+            <div class="input-group">
+                <label for="otp">Enter OTP sent to your phone:</label>
+                <input type="number" id="otp" placeholder="Enter 6-digit OTP">
+            </div>
+            <button class="btn" onclick="verifyOTP()">Confirm Transfer</button>
+        </div>
+
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        let transferInProgress = false;
+
+        function initiateTransfer() {
+            const accountName = document.getElementById("accountName").value;
+            const accountNumber = document.getElementById("accountNumber").value;
+            const amount = document.getElementById("amount").value;
+            const currency = document.getElementById("currency").value;
+
+            if (accountName && accountNumber && amount && currency) {
+                document.getElementById("message").textContent = "OTP sent to your registered phone number.";
+                document.getElementById("message").style.color = "green";
+                document.getElementById("otpSection").style.display = "block";
+                transferInProgress = true;
+            } else {
+                document.getElementById("message").textContent = "Please fill in all fields.";
+                document.getElementById("message").style.color = "red";
+            }
+        }
+
+        function verifyOTP() {
+            if (!transferInProgress) return;
+
+            const otp = document.getElementById("otp").value;
+            if (otp === "123456") { // Sample OTP for demonstration
+                const accountName = document.getElementById("accountName").value;
+                const accountNumber = document.getElementById("accountNumber").value;
+                const amount = document.getElementById("amount").value;
+                const currency = document.getElementById("currency").value;
+                const notes = document.getElementById("notes").value;
+
+                const newTransaction = {
+                    id: Date.now(),
+                    accountName: accountName,
+                    accountNumber: accountNumber,
+                    amount: parseFloat(amount),
+                    currency: currency,
+                    notes: notes,
+                    date: new Date().toLocaleString()
+                };
+
+                let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+                transactions.push(newTransaction);
+                localStorage.setItem("transactions", JSON.stringify(transactions));
+
+                document.getElementById("message").textContent = "Transfer successful!";
+                document.getElementById("message").style.color = "green";
+                document.getElementById("otpSection").style.display = "none";
+                resetForm();
+            } else {
+                document.getElementById("message").textContent = "Invalid OTP. Please try again.";
+                document.getElementById("message").style.color = "red";
+            }
+        }
+
+        function resetForm() {
+            document.getElementById("accountName").value = "";
+            document.getElementById("accountNumber").value = "";
+            document.getElementById("amount").value = "";
+            document.getElementById("currency").value = "USD";
+            document.getElementById("notes").value = "";
+            document.getElementById("otp").value = "";
+            transferInProgress = false;
+        }
+    </script>
+</body>
+<!-- Add this code at the end of your HTML file, before the closing </body> tag -->
+<button onclick="window.location.href='customerpage.html'" style="
+    padding: 8px; 
+    background-color: white; 
+    color: black; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 20px auto; 
+    width: 40px; 
+    height: 40px; 
+    position: fixed; 
+    bottom: 20px; 
+    left: 50%; 
+    transform: translateX(-50%);
+">
+    <span style="font-size: 20px;">🔙</span>
+</button>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Management Login - ISM Bank</title>
+    <style>
+        /* Global styling */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, rgba(76, 110, 245, 0.9), rgba(189, 224, 254, 0.9)), 
+                        url('your-background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        /* ATM Container styling */
+        .atm-container {
+            display: flex;
+            width: 90%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Sidebar styling */
+        .atm-sidebar {
+            width: 30%;
+            background-color: #003366;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 20px;
+            text-align: center;
+            opacity: 0.5;
+            pointer-events: none; /* Initially disable */
+        }
+
+        .atm-sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .atm-sidebar a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 1.1em;
+            padding: 10px;
+            background: #00509e;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .atm-sidebar a:hover {
+            background: #0066cc;
+        }
+
+        /* Main Login Section styling */
+        .login-section {
+            flex: 1;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .login-section h1 {
+            font-size: 2em;
+            color: #4c6ef5;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+            text-align: left;
+            position: relative;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        /* Login Button */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin-top: 25px;
+            color: #fff;
+            background-color: #4c6ef5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #5a75f6;
+            transform: scale(1.05);
+        }
+
+        /* Message styling */
+        .message {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        .footer {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        /* Enable sidebar options on successful login */
+        .atm-sidebar.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="atm-container">
+        
+        <!-- Sidebar -->
+        <div class="atm-sidebar" id="atmSidebar">
+            <h2>ISM ATM Options</h2>
+            <a href="atmpage.html">Withdraw Cash</a>
+            <a href="customerpageatm.html">Check Balance</a>
+            <a href="transferatm.html">Transfer Funds</a>
+      
+        </div>
+
+        <!-- Login Section -->
+        <div class="login-section">
+            <h1>Welcome to ISM ATM</h1>
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button class="btn" onclick="login()">Login</button>
+            <p class="message" id="message"></p>
+            <div class="footer">© 2024 ISM Bank. All rights reserved.</div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const sidebar = document.getElementById("atmSidebar");
+
+            if (username && password) {
+                if (username === "staff" && password === "password") {
+                    document.getElementById("message").textContent = "Login successful! Access granted.";
+                    document.getElementById("message").style.color = "green";
+                    
+                    // Enable sidebar options
+                    sidebar.classList.add("active");
+                } else {
+                    document.getElementById("message").textContent = "Invalid username or password.";
+                    document.getElementById("message").style.color = "red";
+                    
+                    // Disable sidebar options
+                    sidebar.classList.remove("active");
+                }
+            } else {
+                document.getElementById("message").textContent = "Please fill in all fields.";
+                document.getElementById("message").style.color = "red";
+                
+                // Ensure sidebar options are disabled
+                sidebar.classList.remove("active");
+            }
+        }
+    </script>
+</body>
+</html>

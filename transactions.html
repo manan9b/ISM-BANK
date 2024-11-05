@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - LAL Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e7ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .form-section, .table-section, .remove-section {
+            margin: 20px 0;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3b38d4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #e0e7ff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .password-protected {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction Details</h1>
+
+        <div class="form-section">
+            <h2>Admin: Add New Transaction</h2>
+            <form id="admin-transaction-form">
+                <label for="admin-password">Admin Password:</label>
+                <input type="password" id="admin-password" placeholder="Enter Admin Password" required>
+
+                <div class="password-protected hidden">
+                    <label for="admin-transaction-type">Transaction Type:</label>
+                    <select id="admin-transaction-type" required>
+                        <option value="">Select Type</option>
+                        <option value="Deposit">Deposit</option>
+                        <option value="Withdrawal">Withdrawal</option>
+                        <option value="Transfer">Transfer</option>
+                    </select>
+
+                    <label for="admin-amount">Amount:</label>
+                    <input type="number" id="admin-amount" placeholder="Enter Amount" required>
+
+                    <label for="admin-date">Date:</label>
+                    <input type="date" id="admin-date" required>
+
+                    <button type="submit">Add Admin Transaction</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="remove-section">
+            <h2>Remove Transaction</h2>
+            <form id="remove-transaction-form">
+                <label for="transaction-select">Select Transaction to Remove:</label>
+                <select id="transaction-select" required>
+                    <option value="">Select Transaction</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+
+                <label for="remove-password">Admin Password:</label>
+                <input type="password" id="remove-password" placeholder="Enter Admin Password" required>
+
+                <button type="submit">Remove Transaction</button>
+            </form>
+        </div>
+
+        <div class="table-section">
+            <h2>Existing Transactions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serial No.</th>
+                        <th>Transaction Type</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-table-body">
+                    <!-- Transaction records will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const adminTransactionForm = document.getElementById('admin-transaction-form');
+        const removeTransactionForm = document.getElementById('remove-transaction-form');
+        const transactionTableBody = document.getElementById('transaction-table-body');
+        const transactionSelect = document.getElementById('transaction-select');
+        const passwordProtectedSection = document.querySelector('.password-protected');
+        let transactionCount = 0;
+
+        const ADMIN_PASSWORD = 'admin123';
+        let balance = parseFloat(localStorage.getItem('balance')) || 0;
+
+        function loadTransactions() {
+            const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            transactions.forEach((transaction, index) => {
+                addTransaction(transaction.type, transaction.amount, transaction.date);
+                addTransactionOption(transaction.type, transaction.amount, transaction.date, index + 1);
+            });
+        }
+
+        function addTransaction(type, amount, date) {
+            transactionCount++;
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${transactionCount}</td>
+                <td>${type}</td>
+                <td>$${parseFloat(amount).toFixed(2)}</td>
+                <td>${date}</td>
+            `;
+            transactionTableBody.appendChild(row);
+
+            // Update balance based on transaction type
+            if (type === "Deposit") {
+                balance += parseFloat(amount);
+            } else {
+                balance -= parseFloat(amount);
+            }
+            localStorage.setItem('balance', balance.toFixed(2));
+        }
+
+        function addTransactionOption(type, amount, date, serialNo) {
+            const option = document.createElement('option');
+            option.value = serialNo;
+            option.textContent = `${serialNo}: ${type} - $${parseFloat(amount).toFixed(2)} on ${date}`;
+            transactionSelect.appendChild(option);
+        }
+
+        function saveTransaction(type, amount, date) {
+            const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            transactions.push({ type, amount, date });
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+        }
+
+        function removeTransaction(serialNo) {
+            const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            transactions.splice(serialNo - 1, 1);
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            reloadTransactions();
+        }
+
+        function reloadTransactions() {
+            transactionCount = 0;
+            transactionTableBody.innerHTML = '';
+            transactionSelect.innerHTML = '<option value="">Select Transaction</option>';
+            loadTransactions();
+        }
+
+        adminTransactionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('admin-password').value;
+
+            if (password === ADMIN_PASSWORD) {
+                const type = document.getElementById('admin-transaction-type').value;
+                const amount = document.getElementById('admin-amount').value;
+                const date = document.getElementById('admin-date').value;
+
+                if (type && amount && date) {
+                    addTransaction(type, amount, date);
+                    saveTransaction(type, amount, date);
+                    adminTransactionForm.reset();
+                    passwordProtectedSection.classList.add('hidden');
+                }
+            } else {
+                alert('Incorrect password!');
+            }
+        });
+
+        removeTransactionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const serialNo = transactionSelect.value;
+            const password = document.getElementById('remove-password').value;
+
+            if (password === ADMIN_PASSWORD && serialNo) {
+                removeTransaction(serialNo);
+                removeTransactionForm.reset();
+            } else {
+                alert('Incorrect password or no transaction selected!');
+            }
+        });
+
+        document.getElementById('admin-password').addEventListener('input', function(e) {
+            if (e.target.value === ADMIN_PASSWORD) {
+                passwordProtectedSection.classList.remove('hidden');
+            } else {
+                passwordProtectedSection.classList.add('hidden');
+            }
+        });
+
+        loadTransactions();
+    </script>
+
+    <button onclick="window.location.href='customerpage.html'" style="
+        padding: 8px; 
+        background-color: white; 
+        color: black; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        margin: 0 auto; 
+        width: 200px;
+        margin-top: 20px;
+    ">Back to Customer Page</button>
+</body>
+</html>

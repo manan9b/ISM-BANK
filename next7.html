@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Basic styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('backgroundimage.jpg'); /* Set your background image here */
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white; /* Set text color to white */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between; /* Align the logo and menu bar on opposite ends */
+            align-items: center;
+            background: url('bluish-pinkish-redish-texture.jpg') repeat; /* Texture background image */
+            padding: 20px 20px; /* Adjust padding as needed */
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .logo img {logo.jpg
+            max-height: 150px;
+            align-self: flex-start; /* Align the logo to the left */
+            cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-item {
+            margin-right: 40px;
+            transition: transform 0.6s ease; /* Smooth hover effect */
+        }
+
+        .menu-item:last-child {
+            margin-right: 0;
+        }
+
+        .menu-item a {
+            text-decoration: none;
+            color: white; /* Set text color to white */
+            padding: 10px 20px;
+            border-radius: 25px; /* Rounded corners */
+            background: linear-gradient(135deg, #3498db, #e74c3c, #c0392b); /* Gradient background */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Shadow effect */
+        }
+
+        .menu-item a:hover {
+            transform: scale(1.1); /* Scale on hover for an attractive effect */
+        }
+
+        /* Animation for text elements */
+        .animated-text {
+            opacity: 0;
+            transform: translateY(-20px); /* Start text animation above its final position */
+            animation: intro 1s ease forwards;
+            text-align: left; /* Left-align text */
+            color: #3498db; /* Set text color to match the background theme */
+        }
+
+        @keyframes intro {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Added padding for content */
+        .content {
+            padding-top: 300px; /* Adjust as needed */
+        }
+
+        /* Text with black shadow (outline) */
+        .text-outline {
+            color: white; /* Text color */
+            text-shadow:
+                -1px -1px 0 black, /* Top-left shadow, black */
+                1px -1px 0 black,  /* Top-right shadow, black */
+                -1px 1px 0 black,  /* Bottom-left shadow, black */
+                1px 1px 0 black;   /* Bottom-right shadow, black */
+        }
+
+        /* Social media and footer section */
+        .social-media {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .social-media a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .social-media a:hover {
+            text-decoration: underline;
+        }
+
+        .login-section {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .login-section a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .login-section a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+    <title>What is Engineering Genetics in Health Care?</title>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html"> <!-- Link to the first page -->
+            <div class="logo">
+                <!-- Your logo here -->
+                <img src="Add_a_heading__2_-removebg-preview (1).png" alt="Logo">
+            </div>
+        </a>
+        <ul class="menu">
+            <li class="menu-item"><a href="original2.html">About us</a></li>
+            <li class="menu-item"><a href="About.html">Our Leaders</a></li>
+            <li class="menu-item"><a href="logincustomer.html">Customer Login</a></li>
+            <li class="menu-item"><a href="loginstaff.html">Staff Login</a></li>
+            <li class="menu-item"><a href="atm.html">ATM Management</a></li>
+      
+        </ul>
+    </div>
+
+    <center><div class="content">
+        <div class="animated-text text-outline">
+            <h1><center>Welcome to ISM Bank!</h1></center>
+        </div>
+        <div class="animated-text text-outline">
+            <center><p>At ISM Bank, we are committed to empowering your financial future with transparency, security, and innovation. Join us to explore the power of banking solutions crafted to meet your needs.</p></center>
+        </div>
+        <div class="animated-text text-outline">
+            <h2><center>Our Mission</h2></center>
+        </div>
+        <div class="animated-text text-outline">
+            <p><center>To provide personalized financial services that foster financial growth and literacy within our community.</p></center>
+        </div>
+</div>
+        <div class="animated-text text-outline">
+            <h2><center>Our Vision</h2></center>
+        </div>
+        <div class="animated-text text-outline">
+            <p><center>To be the most trusted banking partner, offering exceptional service through cutting-edge technology and customer-centered excellence.</p></center>
+        </div>
+
+                    </ul>
+        </div>
+    </div>
+
+    <!-- Social Media and All Rights Reserved Section -->
+    <div class="social-media">
+        <a href="https://www.instagram.com"><img src="Instagram_logo_2016.svg.png" alt="Instagram" width="20"></a>
+        <a href="https://www.youtube.com"><img src="hd-youtube-logo-png-transparent-background-20.png" alt="YouTube" width="20"></a>
+        <a href="https://www.facebook.com/profile.php?id=61550791121781"><img src="Facebook-logo-blue-circle-large-transparent-png.png" alt="Facebook" width="20"></a>
+    </div>
+
+    
+
+    <!-- JavaScript to handle user input and responses -->
+    <script>
+        // Your JavaScript code here, if needed
+    </script>
+<audio controls autoplay muted>
+        <source src="music.mp4" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up Chatbot</title>
+    <style>
+        /* Styling for the chatbot button */
+        #chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Styling for the chatbot container */
+        #chatbot-container {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px; /* Rounded edges */
+            width: 350px;
+            height: 500px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styling for the close button */
+        #close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* Styling for the chat area */
+        #chat-area {
+            overflow-y: scroll;
+            height: 350px;
+            padding: 10px;
+        }
+
+        /* Styling for user input field */
+        #user-input-container {
+            display: flex;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #send-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Styling for messages */
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        /* Styling for user messages */
+        .user-message {
+            background-color: #007BFF;
+            color: #fff;
+            align-self: flex-end;
+        }
+
+        /* Styling for chatbot messages */
+        .chatbot-message {
+            background-color: #F0F0F0;
+            color: #000;
+            align-self: flex-start;
+        }
+
+        /* Styling for the bottom close button */
+        #bottom-close-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Chatbot button -->
+    <button id="chatbot-button">Chat With MGENES</button>
+
+    <!-- Chatbot container -->
+    <div id="chatbot-container">
+        <!-- Close button -->
+        <span id="close-button">X</span>
+
+        <!-- Chat area -->
+        <div id="chat-area">
+            <!-- Chatbot initial message -->
+            <div class="message chatbot-message">Hello! How can I assist you today?</div>
+        </div>
+
+        <!-- User input field -->
+        <div id="user-input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <!-- Bottom close button -->
+    <button id="bottom-close-button">Close Chat</button>
+
+    <script>
+        // Get references to the chatbot button and container
+        const chatbotButton = document.getElementById('chatbot-button');
+        const chatbotContainer = document.getElementById('chatbot-container');
+
+        // Get reference to the close button
+        const closeButton = document.getElementById('close-button');
+
+        // Get reference to the chat area and user input field
+        const chatArea = document.getElementById('chat-area');
+        const userInput = document.getElementById('user-input');
+
+        // Get reference to the send button
+        const sendButton = document.getElementById('send-button');
+
+        // Get reference to the bottom close button
+        const bottomCloseButton = document.getElementById('bottom-close-button');
+
+        // Function to add a user message to the chat area
+        function addUserMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = message;
+            chatArea.appendChild(messageDiv);
+            userInput.value = '';
+        }
+
+        // Function to add a chatbot message to the chat area
+        function addChatbotMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message chatbot-message';
+            messageDiv.textContent = message;
+            chatArea.appendChild(messageDiv);
+        }
+
+        // Toggle the chatbot container's visibility when the button is clicked
+        chatbotButton.addEventListener('click', () => {
+            chatbotContainer.style.display = 'block';
+        });
+
+        // Close the chatbot container when the close button is clicked
+        closeButton.addEventListener('click', () => {
+            chatbotContainer.style.display = 'none';
+        });
+
+        // Close the chatbot container when the bottom close button is clicked
+        bottomCloseButton.addEventListener('click', () => {
+            chatbotContainer.style.display = 'none';
+        });
+
+        // Handle user input
+        sendButton.addEventListener('click', () => {
+            const userMessage = userInput.value;
+            addUserMessage(userMessage);
+            
+            // Handle user input and generate chatbot responses
+            setTimeout(() => {
+                let chatbotResponse;
+
+                // Replace placeholders with your actual questions and responses
+                switch (userMessage.toLowerCase()) {
+                    case 'hi':
+                    case 'hello':
+                        chatbotResponse = 'Hello! How can I assist you today?';
+                        break;
+                    case 'how are you?':
+                        chatbotResponse = 'I am just a computer program, but I\'m here to assist you!';
+                        break;
+                    case 'tell me a joke':
+                        chatbotResponse = 'Sure, here\'s a joke: Why don\'t scientists trust atoms? Because they make up everything!';
+                        break;
+                    case 'what is it about?':
+                        chatbotResponse = 'Genetic engineering (also called genetic modification) is a process that uses laboratory-based technologies to alter the DNA makeup of an organism. This may involve changing a single base pair (A-T or C-G), deleting a region of DNA or adding a new segment of DNA.';
+                        break;
+                    // Add more cases for your questions here
+                    case 'bye':
+                        chatbotResponse = 'Goodbye! If you have more questions, feel free to ask.';
+                        break;
+                    default:
+                        chatbotResponse = 'I don\'t have an answer to that question.';
+                        break;
+                }
+                
+                // Add the chatbot's response to the chat area
+                addChatbotMessage(chatbotResponse);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+
+</html>
+
+

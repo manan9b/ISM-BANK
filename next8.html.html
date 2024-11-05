@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISM Bank - Empowering Your Financial Journey</title>
+    <style>
+        /* Reset styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Body styling */
+        body {
+            background-color: #f3f6fb;
+            color: #333;
+        }
+
+        /* Header styling */
+        .header {
+            background-color: #003366;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+        }
+
+        /* Navigation bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #00509e;
+            padding: 15px 0;
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #003f88;
+        }
+
+        /* Hero section */
+        .hero {
+            position: relative;
+            background-image: url('backgroundimage.jpg'); /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 51, 102, 0.6); /* Semi-transparent overlay */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            animation: slideInFromLeft 1.5s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            animation: slideInFromRight 1.5s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromRight {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Hero buttons */
+        .hero-buttons a {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            color: #ffffff;
+            background-color: #007bff;
+            margin: 0 10px;
+            border-radius: 25px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero-buttons a:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Services section */
+        .services {
+            padding: 60px 20px;
+            background-color: #f3f6fb;
+            text-align: center;
+        }
+
+        .services h3 {
+            font-size: 2.5em;
+            color: #00509e;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .service-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
+            width: 280px;
+            padding: 20px;
+            margin: 15px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h4 {
+            font-size: 1.5em;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Fade in Up Animation for Cards */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #003366;
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .footer a {
+            color: #ffdd57;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Indian School Muscat Bank</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="next8.html.html">Home</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="atm.html">ATM Services</a>
+        <a href="logincustomer.html">Customer Login</a>
+        <a href="contactus.html">Contact Us</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Your Trusted Partner in Financial Success</h2>
+            <p>Empowering dreams and safeguarding futures through secure, innovative, and customer-focused banking solutions.</p>
+            <div class="hero-buttons">
+                <a href="aboutus.html">Learn More</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h3>Our Services</h3>
+        <div class="service-list">
+            <div class="service-card">
+                <h4>Personal Banking</h4>
+                <p>Experience hassle-free banking with a personal touch. Manage accounts, deposits, and more.</p>
+            </div>
+            <div class="service-card">
+                <h4>Business Solutions</h4>
+                <p>Customized financial solutions for businesses to thrive in the dynamic market.</p>
+            </div>
+            <div class="service-card">
+                <h4>Investment Planning</h4>
+                <p>Grow your wealth through strategic investment opportunities tailored to your goals.</p>
+            </div>
+            <div class="service-card">
+                <h4>Insurance & Security</h4>
+                <p>Protect your future with our comprehensive insurance and financial security plans.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 ISM Bank. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | Contact us: XXXX-YYYY-ZZZZ</p>
+    </footer>
+
+</body>
+</html>

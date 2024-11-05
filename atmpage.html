@@ -14,16 +14,17 @@
             height: 100vh;
             margin: 0;
         }
-body {
-    font-family: Arial, sans-serif;
-    background: url("backgroundimage.jpg") no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+
+        body {
+            font-family: Arial, sans-serif;
+            background: url("backgroundimage.jpg") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
         /* ATM Container Styling */
         .atm-container {
@@ -145,13 +146,13 @@ body {
     </style>
 </head>
 <body>
-    <div class="atm-sidebar">
-    <button onclick="window.location.href='customerpageatm.html'">Balance</button>
-
-    <button onclick="window.location.href='contactusatm.html'">Contact</button>
-    <button onclick="window.location.href='transferatm.html'">Transfer</button>
-    <button onclick="window.location.href='atm.html'">Exit</button>
-</div>
+    <div class="atm-container">
+        <div class="atm-sidebar">
+            <button onclick="window.location.href='customerpageatm.html'">Balance</button>
+            <button onclick="window.location.href='contactusatm.html'">Contact</button>
+            <button onclick="window.location.href='transferatm.html'">Transfer</button>
+            <button onclick="window.location.href='atm.html'">Exit</button>
+        </div>
 
         <!-- Main Screen -->
         <div class="atm-screen">
@@ -176,7 +177,37 @@ body {
         </div>
     </div>
 
+    <button onclick="window.location.href='atm.html'" style="
+        padding: 8px; 
+        background-color: white; 
+        color: black; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        margin: 20px auto; 
+        width: 40px; 
+        height: 40px; 
+        position: fixed; 
+        bottom: 20px; 
+        left: 50%; 
+        transform: translateX(-50%);
+    ">
+        <span style="font-size: 20px;">🔙</span>
+    </button>
+
     <script>
+        function speak(text) {
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = "en-US";
+            speech.pitch = 1;
+            speech.rate = 1;
+            speech.volume = 1;
+            window.speechSynthesis.speak(speech);
+        }
+
         function withdrawMoney() {
             const account = document.getElementById("accountSelect").value;
             const amount = document.getElementById("withdrawalAmount").value;
@@ -193,38 +224,20 @@ body {
                 transactions.push(newTransaction);
                 localStorage.setItem("transactions", JSON.stringify(transactions));
 
-                document.getElementById("message").textContent = `Successfully withdrew ₹${amount} from ${account.replace(/_/g, ' ')}.`;
+                const message = `Successfully withdrew ₹${amount} from ${account.replace(/_/g, ' ')}.`;
+                document.getElementById("message").textContent = message;
                 document.getElementById("message").style.color = "green";
+                speak(message); // Call the speak function to read the message aloud
+
                 document.getElementById("withdrawalAmount").value = "";
                 document.getElementById("accountSelect").selectedIndex = 0;
             } else {
-                document.getElementById("message").textContent = "Please fill in all fields.";
+                const errorMessage = "Please fill in all fields.";
+                document.getElementById("message").textContent = errorMessage;
                 document.getElementById("message").style.color = "red";
+                speak(errorMessage); // Read the error message aloud as well
             }
         }
     </script>
 </body>
-<!-- Add this code at the end of your HTML file, before the closing </body> tag -->
-<button onclick="window.location.href='atm.html'" style="
-    padding: 8px; 
-    background-color: white; 
-    color: black; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin: 20px auto; 
-    width: 40px; 
-    height: 40px; 
-    position: fixed; 
-    bottom: 20px; 
-    left: 50%; 
-    transform: translateX(-50%);
-">
-    <span style="font-size: 20px;">🔙</span>
-</button>
-
 </html>
-

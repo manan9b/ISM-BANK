@@ -168,7 +168,7 @@
             </div>
             
             <div class="input-group">
-                <label for="withdrawalAmount">Amount to Withdraw (INR):</label>
+                <label for="withdrawalAmount">Amount to Withdraw (OMR):</label>
                 <input type="number" id="withdrawalAmount" required>
             </div>
 
@@ -212,6 +212,15 @@
             const account = document.getElementById("accountSelect").value;
             const amount = document.getElementById("withdrawalAmount").value;
 
+            if (amount > 150) {
+                const limitMessage = "The amount entered has exceeded the limit of OMR 150. Please re-enter a valid amount.";
+                alert(limitMessage);
+                document.getElementById("message").textContent = limitMessage;
+                document.getElementById("message").style.color = "red";
+                speak(limitMessage);
+                return;
+            }
+
             if (account && amount) {
                 const newTransaction = {
                     id: Date.now(),
@@ -224,10 +233,10 @@
                 transactions.push(newTransaction);
                 localStorage.setItem("transactions", JSON.stringify(transactions));
 
-                const message = `Successfully withdrew ₹${amount} from ${account.replace(/_/g, ' ')}.`;
+                const message = `Successfully withdrew OMR${amount} from ${account.replace(/_/g, ' ')}.`;
                 document.getElementById("message").textContent = message;
                 document.getElementById("message").style.color = "green";
-                speak(message); // Call the speak function to read the message aloud
+                speak(message);
 
                 document.getElementById("withdrawalAmount").value = "";
                 document.getElementById("accountSelect").selectedIndex = 0;
@@ -235,7 +244,7 @@
                 const errorMessage = "Please fill in all fields.";
                 document.getElementById("message").textContent = errorMessage;
                 document.getElementById("message").style.color = "red";
-                speak(errorMessage); // Read the error message aloud as well
+                speak(errorMessage);
             }
         }
     </script>
